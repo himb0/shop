@@ -1,0 +1,361 @@
+#%RAML 1.0
+title: API exposes consumer information and purchasing history
+
+# Implementation of securitySchemes #
+# https://raml.org/developers/whats-new-raml-10 #
+# ################################# #
+baseUri: https://api.dropbox.com/{version}
+version: v1
+mediaType: application/json
+
+securitySchemes:
+    oauth_2_0:
+      description: |
+          Dropbox supports OAuth 2.0 for authenticating all API requests.
+      type: OAuth 2.0
+      describedBy:
+          headers:
+              Authorization:
+                  description: |
+                     Used to send a valid OAuth 2 access token. Do not use
+                     with the "access_token" query string parameter.
+                  type: string
+          queryParameters:
+              access_token:
+                  description: |
+                     Used to send a valid OAuth 2 access token. Do not use
+                     together with the "Authorization" header
+                  type: string
+          responses:
+              401:
+                  description: |
+                      Bad or expired token.
+              403:
+                  description: |
+                      Bad OAuth request (wrong consumer key, bad nonce, expired
+                      timestamp...).
+      settings:
+        authorizationUri: https://www.dropbox.com/1/oauth2/authorize
+        accessTokenUri: https://api.dropbox.com/1/oauth2/token
+        authorizationGrants: [ authorization_code, password ]
+
+types:
+  Shop:
+    uses:
+      Customer: customer.raml
+      Order: Order.raml
+      Product: product.raml
+      /shop:
+        # The "allow" property provides a definition for the `Allow`
+        # header which the server might return if given the `OPTIONS`
+        # method, and which it *MUST* return when given any method that
+        # results in a 405 Method Not Found response.
+        #
+        # This list also describes in RAML which methods are valid for this
+        # resource.  In this example we define a non-standard `RESET`
+        # method.
+        allow:
+         - get
+         - post
+         - put
+         - delete
+        type: {Collection: {item: Customer}}
+        /{cust_id}:
+           type: {Member: {item: Customer}}
+        type: {Collection: {item: Order}}
+        /{order_id}:
+           type: {Member: {item: Order}}
+        type: {Collection: {iem: Product}}
+        /{product_id}:
+           type: {Member: {item: Product}}
+
+resourceTypes:
+  Collection:
+    get:
+      securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      is: [hasHeaders]
+      description: |
+        Display all the customers, orders, and products
+      responses:
+        # Bad Request
+        400:
+          description: |
+            The server cannot or will not process the request due to an apparent
+            client error (e.g., malformed request syntax, size too large, invalid
+            request message framing, or deceptive request routing).
+        # Server request timed out
+        408:
+          description: |
+            The server timed out waiting for the request. According to HTTP
+            specifications: "The client did not produce a request within the
+            time that the server was prepared to wait. The client MAY repeat the
+            request without modifications at any later time"
+        # Source/destination method is locked
+        423:
+          description: |
+            The resource that is being accessed is locked
+        # Rate limiting error
+        429:
+          description: |
+            The user has sent too many requests in a given amount of time.
+            Request limit per 5 minutes.
+        # HTTP version not supported
+        500:
+          description: |
+            A generic error message, given when an unexpected condition was
+            encountered and no more specific message is suitable.
+        # Service unavailable
+        503:
+          description: |
+            The server is currently unavailable (because it is overloaded
+              or down for maintenance). Generally, this is a temporary state.
+        # Gateway timeout
+        504:
+          description: |
+            The server was acting as a gateway or proxy and did not receive a
+            timely response from the upstream server.
+
+        # Resource request is successful
+        200:
+          # Keep-Alive #
+          description: |
+            Message OK
+          body:
+            description: |
+              List of customer records
+            type: <<item>>[]
+
+    # The `PATCH` method is not listed as an allowed method in the list
+    # above.  Therefore, in accordance with the HTTP/1.1 standard, the
+    # server *MUST* return a 405 Method Not Found which *MUST* include
+    # the `Allow` header, just as the header was defined for `OPTIONS`.
+    # A smart RAML processor could take the `allow` list and generate
+    # the the `Allow` response header for all 405 responses
+    # automatically.
+    patch:
+      securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      is: ["hasHeaders"]
+      responses:
+        405:
+          description: |
+            A request method is not supported for the requested resource.
+    post:
+      securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      is: ["hasHeaders"]
+      description: Create new customer(s) in the collection
+      responses:
+        # Bad Request
+        400:
+          description: |
+            The server cannot or will not process the request due to an apparent
+            client error (e.g., malformed request syntax, size too large, invalid
+            request message framing, or deceptive request routing).
+        # Server request timed out
+        408:
+          description: |
+            The server timed out waiting for the request. According to HTTP
+            specifications: "The client did not produce a request within the
+            time that the server was prepared to wait. The client MAY repeat the
+            request without modifications at any later time"
+        # Source/destination method is locked
+        423:
+          description: |
+            The resource that is being accessed is locked
+
+        # Rate limiting error
+        429:
+          description: |
+            The user has sent too many requests in a given amount of time.
+            Request limit per 5 minutes.
+        # HTTP version not supported
+        500:
+          description: |
+            A generic error message, given when an unexpected condition was
+            encountered and no more specific message is suitable.
+        # Service unavailable
+        503:
+          description: |
+            The server is currently unavailable (because it is overloaded
+              or down for maintenance). Generally, this is a temporary state.
+        # Gateway timeout
+        504:
+          description: |
+            The server was acting as a gateway or proxy and did not receive a
+            timely response from the upstream server.
+
+        # Request is fulfilled
+        201:
+          description: |
+            New customer(s) is created
+          headers:
+            secondary-post:
+              description: |
+                Request is fulfilled
+          body:
+            type: <<item>>[]
+
+  Member:
+    put:
+      securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      is: ["hasHeaders"]
+      description: |
+        Update the customer record
+      responses:
+        # Bad Request
+        400:
+          description: |
+            The server cannot or will not process the request due to an apparent
+            client error (e.g., malformed request syntax, size too large, invalid
+            request message framing, or deceptive request routing).
+        # Server request timed out
+        408:
+          description: |
+            The server timed out waiting for the request. According to HTTP
+            specifications: "The client did not produce a request within the
+            time that the server was prepared to wait. The client MAY repeat the
+            request without modifications at any later time"
+        # Data has semantic errors
+        422:
+          description: |
+            The request was well-formed but was unable to be followed due to semantic errors.
+        # Source/destination method is locked
+        423:
+          description: |
+            The resource that is being accessed is locked
+
+        # Rate limiting error
+        429:
+          description: |
+            The user has sent too many requests in a given amount of time.
+            Request limit per 5 minutes.
+        # HTTP version not supported
+        500:
+          description: |
+            A generic error message, given when an unexpected condition was
+            encountered and no more specific message is suitable.
+        # Service unavailable
+        503:
+          description: |
+            The server is currently unavailable (because it is overloaded
+              or down for maintenance). Generally, this is a temporary state.
+        # Gateway timeout
+        504:
+          description: |
+            The server was acting as a gateway or proxy and did not receive a
+            timely response from the upstream server.
+
+        200:
+          # Keep-Alive #
+          description: |
+            Message OK
+          body:
+            type: <<item>>
+    delete:
+      securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      is: ["hasHeaders"]
+      responses:
+        # Bad Request
+        400:
+          description: |
+            The server cannot or will not process the request due to an apparent
+            client error (e.g., malformed request syntax, size too large, invalid
+            request message framing, or deceptive request routing).
+        # Server request timed out
+        408:
+          description: |
+            The server timed out waiting for the request. According to HTTP
+            specifications: "The client did not produce a request within the
+            time that the server was prepared to wait. The client MAY repeat the
+            request without modifications at any later time"
+        # Source/destination method is locked
+        423:
+          description: |
+            The resource that is being accessed is locked
+
+        # Rate limiting error
+        429:
+          description: |
+            The user has sent too many requests in a given amount of time.
+            Request limit per 5 minutes.
+        # HTTP version not supported
+        500:
+          description: |
+            A generic error message, given when an unexpected condition was
+            encountered and no more specific message is suitable.
+        # Service unavailable
+        503:
+          description: |
+            The server is currently unavailable (because it is overloaded
+              or down for maintenance). Generally, this is a temporary state.
+        # Gateway timeout
+        504:
+          description: |
+            The server was acting as a gateway or proxy and did not receive a
+            timely response from the upstream server.
+
+        # Server removed the customer successfully
+        204:
+          description: |
+            Remove the customer
+            body:
+              type: <<item>>
+traits:
+  hasHeaders:
+    headers:
+      Authorization:
+        displayName: Authorization
+        description: Basic authentication base 64 encoded string
+        type: string
+        required: true
+      Tenant-Id:
+        displayName: Tenant-Id
+        description: Tenant id for multi-tenant environments
+        type: string
+        required: true
+      Content-type:
+        displayName: Content-type
+        description: json
+        type: string
+        required: true
+      x-ratelimit-limit:
+        displayName: Rate-limit
+        desription:  Request limit per 5 minutes
+        type: integer
+        required: true
+      x-ratelimit-remaining:
+        displayName: Rate-limit-remaining
+        desription: The number of requests left for the time window
+        type: integer
+        required: true
+      x-ratelimit-reset:
+        displayName: Rate-limit-reset
+        desription: The remaining window before the rate limit resets in epoch seconds
+        type: integer
+        required: true
+      User-Agent:
+        displayName: User-Agent
+        description: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)
+                     Gecko/20100101 Firefox/47.0
+
+                     Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+                     Chrome/51.0.2704.103 Safari/537.36
+
+                     Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+                      Chrome/51.0.2704.103 Safari/537.36
+
+                     Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+                     Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41
+
+                     Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30
+                     (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1
+
+                     Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0;
+                     IEMobile/9.0)
+
+        type: string
+        required: true
+      Accept-Language:
+        displayName: Accept-Language
+        description: en-US
+        type: string
+        required: true
