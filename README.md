@@ -214,7 +214,7 @@ This use case fulfills the further requirement of extending the API to products 
 
 - A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
 
-The basic class diagram is mentioned in section - **_How API work_**. 
+[RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
 ## **Design Considerations**
 
