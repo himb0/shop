@@ -89,6 +89,7 @@ types:
            type: {Member: {item: OrderDetail}}
 resourceTypes:
   Collection:
+    # Gets the list of customers #
     get:
       # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
@@ -138,7 +139,7 @@ resourceTypes:
         # Resource request is successful
         200:
           description: |
-            Message OK
+            Get the list of customer records <<item>>[]
           body:
             description: |
               Successfully lists the customer records
@@ -162,6 +163,7 @@ resourceTypes:
         405:
           description: |
             A request method is not supported for the requested resource.
+    # Creates a new customer(s) #
     post:
       # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
@@ -394,5 +396,10 @@ traits:
       Connection:
         displayName: Connection:keep-alive
         description: Keep-Alive
+        type: string
+        required: true
+      Accept-Encoding:
+        displayName: Accept-Encoding
+        desription: gzip
         type: string
         required: true
