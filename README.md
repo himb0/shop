@@ -166,6 +166,7 @@ Rate limiting is incorporated at the network layer to handle congestion, and ser
 
 ## **Use Case 2**
 
+
 ## **Use Case 3**
 This use case fulfills the further requirement of extending the API to products and orders. Shop is the parent RAML which uses libraries customer, order, product, and order details as collections. This design pattern was adopted to incorporate a basic data modelling mechanism which might be implemented on the backend system. 
 
@@ -189,6 +190,16 @@ The basic class diagram is mentioned in section - **_How API work_**.
 - Modularity
 - Standard practices of RAML
 
+## **Reference**
+
+1. Tools used - Github Desktop, Atom with API Workbench, pros.io
+2. RAML 1.0 - [apiworkbench.com/docs/](http://apiworkbench.com/docs/)
+3. HTTP error codes and header info - 
+> [w3.org/Protocols/HTTP](https://www.w3.org/Protocols/HTTP/HTRESP.html)
+
+> [w3.org/Protocols](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
+
+> [wikipedia/](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 
 
