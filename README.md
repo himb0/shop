@@ -59,13 +59,20 @@ This call is OAUTH2 secure, displays header information through trait: hasHeader
 The GET method incorporates error handling through network layer,
 
 > 400: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+
 > 408: The server timed out waiting for the request. According to HTTP specifications: "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the       request without modifications at any later time"
-> 423: 
-> 429:
-> 500:
-> 503:
-> 504:
-> 200:
+
+> 423: The resource that is being accessed is locked
+
+> 429: The user has sent too many requests in a given amount of time. Request limit per 5 minutes.
+            
+> 500: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
+
+> 503: The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+              
+> 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
+            
+> 200: Lists the customer records as collection <<item>>[]
 
 Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
 
