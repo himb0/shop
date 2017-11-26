@@ -218,13 +218,13 @@ The basic class diagram is mentioned in section - **_How API work_**.
 
 ## **Design Considerations**
 
+- Security - Incorporation of oauth2 which is a clean separation of roles between the server responsible for handling OAuth requests and the server handling user authorization. 
 - Re-usability - The idea of reusability is a fundamental principle followed while designing Shop RAML spec. I have used `collection` `resourceTypes:` `traits` `uses` to incorporate this feature. 
 - Modularity - Modules: shop, customer, order, product, and order details are independent in nature which promotes less coupling and high cohension. 
 - Standard practices of RAML - Use of inheritance through `uses` `collections` and promote re-usabiliy through `traits` `resourceTypes`
-- Performance - `Connection:Keep-Alive` ensures the HTTP connection is persistent once a 3 way handshake is established with the server and the servicing client. 
+- Performance - `Connection:Keep-Alive` ensures the HTTP connection is persistent once a 3 way handshake is established with the server and the servicing client. HTTP/1.1 is being used at network layer which keeps the connection persistent, improves connections speeds with time and bandwidth, allows clients to send multiple requests before waiting for response and sends data explicitly to its servicing client.  
 - Error handling - Extensive use of error handling in network layer to cover all the possible edge cases. However, the API does not cover data related exceptions, and errors and expects them to be handled by the application and presentation layer. 
 - Data quality - This is not considered in this API as it is more of implementation detail and should be added in the back-end and front-end systems. Though data semantics is being checked with error code `422`
-
 
 ## **Reference**
 
