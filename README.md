@@ -22,12 +22,12 @@ RAML spec provides customer records - personal information, their order history 
 
 [RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
-The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of data. This API requires OAUTH2 authentication with requesting clients to service their requests. API returns 
+The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of customer assets. This API requires OAUTH2 authentication information to service their requesting clients. In events of failure, API returns 
 
 > 401 - Bad or expired token 
 > 403 - Bad oauth request (wrong consumer key, bad nonce, expired timestamp..}.
 
-The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). This API  allows only: 
+The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). This API  allows below methods: 
 
 > get
 
@@ -68,8 +68,8 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 ## **Use Case 1**
 
 ### **List customers**
-This use case provides consumer's personal information, products, and order history to the requesting external entities. The API fulfills the client's request through 
-> GET: provides customer personal information - first name, last name, and address
+This use case provides consumer's personal information, products, and order history to the requesting external entities. The API fulfills the client's request through, 
+> GET: provides customer, order, product, order information of the shop.
 This call is OAUTH2 secure, displays header information through trait: hasHeader. 
 
 The GET method incorporates error handling through network layer,
