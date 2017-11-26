@@ -17,11 +17,15 @@ RAML spec provides customer records - personal information, their order history 
 
 [RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
-The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of data. This API requires OAUTH2 authentication with requesting clients to service their requests. API returns > 401 - Bad or expired token > 403 - Bad oauth request (wrong consumer key, bad nonce, expired timestamp..}.
+The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of data. This API requires OAUTH2 authentication with requesting clients to service their requests. API returns 
+
+> 401 - Bad or expired token 
+> 403 - Bad oauth request (wrong consumer key, bad nonce, expired timestamp..}.
 The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). 
 
-This API  allows only get, post, put, and delete requests; any other requests like patch, trace are deemed invalid and returned > 405 - A request method is not supported for the requested resource.
+This API  allows only get, post, put, and delete requests; any other requests like patch, trace are deemed invalid and returned 
 
+> 405 - A request method is not supported for the requested resource.
 
 
 - Use Case 1
