@@ -1,4 +1,9 @@
-#%RAML 1.0
+# %RAML 1.0
+# Developed by: Himanshu Bansal
+# Date: 26 November'17
+# shop.raml
+# shop.raml uses: customer.raml product.raml order.raml orderdetail.raml
+
 title: API exposes consumer information and purchasing history
 
 # Implementation of securitySchemes #
@@ -7,7 +12,6 @@ title: API exposes consumer information and purchasing history
 baseUri: https://api.dropbox.com/{version}
 version: v1
 mediaType: application/json
-
 securitySchemes:
     oauth_2_0:
       description: |
@@ -41,9 +45,20 @@ securitySchemes:
 
 types:
   Shop:
+    #                               #
+    # add attributes of Shop below  #
+    #                               #
+    shop_id:
+      type: number[]
+      desription: |
+        unique id for session
+
+    #                      #
+    # add libaries below   #
+    #                      #
     uses:
       Customer: customer.raml
-      Order: Order.raml
+      Order: order.raml
       Product: product.raml
       OrderDetail: orderdetail.raml
       /shop:

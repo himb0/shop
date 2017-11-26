@@ -1,10 +1,19 @@
 #%RAML 1.0 Library
+# Developed by: Himanshu Bansal
+# Date: 26 November'17
+# orderdetails.raml
+
 types:
   OrderDetails:
     uses:
       Customer: customer.raml
       Product: product.raml
       Order: order.raml
+
+      #                                        #
+      # add attributes of OrderDetails below   #
+      #                                        #
+
       order_detail_id:
         type: number[]
         description: |
@@ -23,4 +32,3 @@ types:
         type: number[]
         description: |
           foreign key identifier for order
-    
