@@ -11,7 +11,7 @@ This API is covering below use cases:-
  
 3. Simple extension of the API to support future resources such as orders and products
 
-### **How does API work?**
+### **How API works**
 
 RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its child class attributes to display further information about customer's ordering history and the range of products in the catalog.
 
@@ -167,8 +167,28 @@ Rate limiting is incorporated at the network layer to handle congestion, and ser
 ## **Use Case 2**
 
 ## **Use Case 3**
+This use case fulfills the further requirement of extending the API to products and orders. Shop is the parent RAML which uses libraries customer, order, product, and order details as collections. This design pattern was adopted to incorporate a basic data modelling mechanism which might be implemented on the backend system. 
+
+> A shop object is generated whenever customer invokes a shopping basket and can exist without Customer/order/product/order objects.
+
+> A customer object has a many to one relationship with shop. Every customer is attached with shopping id.
+
+> A order object has a many to one relationship with shop. Every order is attached with shopping id.
+
+> A product object has a many to one relationship with shop. Every product is attached with shopping id. 
+
+> A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
+
+The basic class diagram is mentioned in section - **How API work**__s. 
 
 # **Design Considerations**
+
+- Re-usability
+- Performance
+- Error handling
+- Modularity
+- Standard practices of RAML
+
 
 
 
