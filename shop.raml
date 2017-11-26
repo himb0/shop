@@ -247,13 +247,12 @@ resourceTypes:
           description: |
             The server was acting as a gateway or proxy and did not receive a
             timely response from the upstream server.
-
         200:
           # Keep-Alive #
           description: |
             Message OK
           body:
-            type: <<item>>
+            type: <<item>>[]
     delete:
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
       is: ["hasHeaders"]
@@ -302,13 +301,13 @@ resourceTypes:
           description: |
             Remove the customer
             body:
-              type: <<item>>
+              type: <<item>>[]
 traits:
   hasHeaders:
     headers:
       Authorization:
         displayName: Authorization
-        description: Basic authentication base 64 encoded string
+        description: OAUTH2 authentication base 64 encoded string
         type: string
         required: true
       Tenant-Id:
@@ -360,6 +359,6 @@ traits:
         required: true
       Accept-Language:
         displayName: Accept-Language
-        description: en-US
+        description: en-US;en-UK
         type: string
         required: true
