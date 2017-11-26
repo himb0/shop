@@ -115,7 +115,6 @@ The POST method incorporates error handling through network layer,
             
 > 201: Request successful for creating a new list of customer(s) in a collection.
 
-
 Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Update a customer**
@@ -173,7 +172,7 @@ The PUT method incorporates error handling through network layer,
 Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ## **Use Case 2**
-This use case fulfills the requests from mobile applications. The RAML spec is agnostic to web and mobile applications. A careful consideration was made to incorporate error handling at the network layer to fulfill mobile app requests due to performance constraints. The following items listed below are carefully considered to fulfill this use case. 
+This use case fulfills the requests from mobile applications. The RAML spec is agnostic to web and mobile applications. A careful consideration is made to incorporate error handling at the network layer to fulfill mobile app requests due to performance constraints. The following items listed below are carefully considered to fulfill this use case. 
 
 > HTTP Error codes [w3.org/Protocols](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
@@ -182,7 +181,7 @@ This use case fulfills the requests from mobile applications. The RAML spec is a
 After detailed analysis, below header information is added.
 
 ### **UserAgent**
-The header information that contains a characteristic string that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent.  
+The header information contains information that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent.  
 
 UserAgent information server will be able to fulfill clients providing below info:
 
