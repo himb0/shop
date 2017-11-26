@@ -139,6 +139,30 @@ The PUT method incorporates error handling through network layer,
 Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Delete a customer**
+This use case fetches the customer id from the client and deletes a customer record from the collection.
+
+> DELETE: delete a customer record
+This call is OAUTH2 secure, displays header information through trait: hasHeader. 
+
+The PUT method incorporates error handling through network layer,
+
+> 400: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+
+> 408: The server timed out waiting for the request. According to HTTP specifications: "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the       request without modifications at any later time".
+
+> 423: The resource that is being accessed is locked.
+
+> 429: The user has sent too many requests in a given amount of time. Request limit per 5 minutes.
+            
+> 500: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
+
+> 503: The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+              
+> 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
+            
+> 204: Request successful for deleting customer(s) from the collection.
+
+Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ## **Use Case 2**
 
