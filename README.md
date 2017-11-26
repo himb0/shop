@@ -175,9 +175,7 @@ After detailed analysis, below header information is added.
 
 1. UserAgent: The header information that contains a characteristic string that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent. 
 
-2. Connection: The Connection general header controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. However, this is supported only within network using HTTP 1.1 standard. 
-
-With UserAgent information server will be able to fulfill clients providing below info:
+UserAgent information server will be able to fulfill clients providing below info:
 
 > Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)Gecko/20100101 Firefox/47.0
 
@@ -193,6 +191,10 @@ With UserAgent information server will be able to fulfill clients providing belo
 Version/10.0 Mobile/14E304 Safari/602.1
 
 > Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0)
+
+2. Connection: The Connection general header controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. However, this is supported only within network using HTTP 1.1 standard. 
+
+The connection between server and client will not expire once a 3 way handshake is established between the two entities making the connection persistent. 
 
 ## **Use Case 3**
 This use case fulfills the further requirement of extending the API to products and orders. Shop is the parent RAML which uses libraries customer, order, product, and order details as collections. This design pattern was adopted to incorporate a basic data modelling mechanism which might be implemented on the backend system. 
