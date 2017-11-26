@@ -1,6 +1,6 @@
 # **The RESTful API Modeling Language (RAML) Spec**
 
-A RAML Spec exposes consumer's  information. 
+A RAML Spec exposes consumer's personal information, their purchasing history and shopping cart's product catalog data.
 
 ## **Use Case Coverage** 
 
@@ -218,13 +218,13 @@ The basic class diagram is mentioned in section - **_How API work_**.
 
 # **Design Considerations**
 
-- Re-usability - `resourceTypes:` `traits` 
-- Less coupling
-- High Cohension
-- Performance
-- Error handling
-- Modularity - 
-- Standard practices of RAML
+- Re-usability - The idea of reusability is a fundamental principle followed while designing Shop RAML spec. I have used `collection` `resourceTypes:` `traits` `uses` to incorporate this feature. 
+- Modularity - Modules: shop, customer, order, product, and order details are independent in nature which promotes less coupling and high cohension. 
+- Standard practices of RAML - Use of inheritance through `uses` `collections` and promote re-usabiliy through `traits` `resourceTypes`
+- Performance - `Connection:Keep-Alive` ensures the HTTP connection is persistent once a 3 way handshake is established with the server and the servicing client. 
+- Error handling - Extensive use of error handling in network layer to cover all the possible edge cases.
+
+
 
 ## **Reference**
 
