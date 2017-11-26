@@ -27,11 +27,12 @@ The code for implementation of authentication is taken from, [raml.org/raml-1.0]
 > 405 - A request method is not supported for the requested resource.
 
 **Header Details**
-> Authorization
+> [hasHeader] - The header name, defined as trait for re-using in GET, POST, PUT, DELETE methods. 
+> Authorization: OAUTH2 authentication base 64 encoded string
 
-> Tenant-Id
+> Tenant-Id: Tenant id for multi-tenant environments
 
-> Content-type
+> Content-type: json
 
 > x-ratelimit-limit: the rate limit ceiling for that given endpoint. Each client is provided a 5 min window
 
@@ -49,8 +50,24 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 
 > Accept-Language: en-US;en-UK
 
-- Use Case 1
-This use case provides consumer's personal information to the requesting external entities. The API fulfills the client's request and provides customer details like first name, last name, and address. Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
+## **Use Case 1**
+
+This use case provides consumer's personal information, products, and order history to the requesting external entities. The API fulfills the client's request through 
+> GET: provides customer personal information - first name, last name, and address
+This call is OAUTH2 secure, displays header information through trait: hasHeader. 
+
+The GET method incorporates error handling through network layer,
+
+> 400: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+> 408: The server timed out waiting for the request. According to HTTP specifications: "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the       request without modifications at any later time"
+> 423: 
+> 429:
+> 500:
+> 503:
+> 504:
+> 200:
+
+Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
 
 ### **Design Considerations**
 
