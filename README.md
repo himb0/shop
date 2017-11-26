@@ -169,17 +169,17 @@ Rate limiting is incorporated at the network layer to handle congestion, and ser
 ## **Use Case 3**
 This use case fulfills the further requirement of extending the API to products and orders. Shop is the parent RAML which uses libraries customer, order, product, and order details as collections. This design pattern was adopted to incorporate a basic data modelling mechanism which might be implemented on the backend system. 
 
-> A shop object is generated whenever customer invokes a shopping basket and can exist without Customer/order/product/order objects.
+- A shop object is generated whenever customer invokes a shopping basket and can exist without Customer/order/product/order objects.
 
-> A customer object has a many to one relationship with shop. Every customer is attached with shopping id.
+- A customer object has a many to one relationship with shop. Every customer is attached with shopping id.
 
-> A order object has a many to one relationship with shop. Every order is attached with shopping id.
+- A order object has a many to one relationship with shop. Every order is attached with shopping id.
 
-> A product object has a many to one relationship with shop. Every product is attached with shopping id. 
+- A product object has a many to one relationship with shop. Every product is attached with shopping id. 
 
-> A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
+- A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
 
-The basic class diagram is mentioned in section - **How API work**__s. 
+The basic class diagram is mentioned in section - **_How API work_**. 
 
 # **Design Considerations**
 
