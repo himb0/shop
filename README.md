@@ -17,41 +17,11 @@ RAML spec provides customer records - personal information, their order history 
 
 [RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
-This API requires OAUTH2 authentication with requesting clients to service their requests. 
+The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of data. This API requires OAUTH2 authentication with requesting clients to service their requests. API returns > 401 - Bad or expired token > 403 - Bad oauth request (wrong consumer key, bad nonce, expired timestamp..}.
+The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). 
 
-> baseUri: https://api.dropbox.com/{version}
-version: v1
-mediaType: application/json
-securitySchemes:
-    oauth_2_0:
-      description: |
-          Dropbox supports OAuth 2.0 for authenticating all API requests.
-      type: OAuth 2.0
-      describedBy:
-          headers:
-              Authorization:
-                  description: |
-                     Used to send a valid OAuth 2 access token. Do not use
-                     with the "access_token" query string parameter.
-                  type: string
-          queryParameters:
-              access_token:
-                  description: |
-                     Used to send a valid OAuth 2 access token. Do not use
-                     together with the "Authorization" header
-                  type: string
-          responses:
-              401:
-                  description: |
-                      Bad or expired token.
-              403:
-                  description: |
-                      Bad OAuth request (wrong consumer key, bad nonce, expired
-                      timestamp...).
-      settings:
-        authorizationUri: https://www.dropbox.com/1/oauth2/authorize
-        accessTokenUri: https://api.dropbox.com/1/oauth2/token
-        authorizationGrants: [ authorization_code, password ]
+This API  allows only get, post, put, and delete requests; any other requests like patch, trace are deemed invalid and returned > 405 - A request method is not supported for the requested resource.
+
 
 
 - Use Case 1
