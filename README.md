@@ -58,6 +58,8 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 
 > Accept-Language: en-US;en-UK
 
+> Connection: Keep-Alive
+
 ## **Use Case 1**
 
 ### **List customers**
