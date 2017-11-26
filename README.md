@@ -13,8 +13,9 @@ This API is covering below use cases:-
 
 ### **How does API work?**
 
-RAML spec provides customer records - personal information, their order history as well as lists product catalog available in shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop objects and uses its child class objects to display relevant information. 
+RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its child class attributes to display further information about customer's ordering history and the range of products in the catalog.
 
+![Class Diagram]({{site.baseurl}}/RAML Spec.png)
 
 
 ### **Design Considerations**
