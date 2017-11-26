@@ -143,6 +143,7 @@ resourceTypes:
         405:
           description: |
             A request method is not supported for the requested resource.
+  Member:
     post:
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
       is: ["hasHeaders"]
@@ -198,7 +199,6 @@ resourceTypes:
           body:
             type: <<item>>[]
 
-  Member:
     put:
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
       is: ["hasHeaders"]
@@ -360,5 +360,10 @@ traits:
       Accept-Language:
         displayName: Accept-Language
         description: en-US;en-UK
+        type: string
+        required: true
+      Connection:
+        displayName: Connection:keep-alive
+        description: Keep-Alive
         type: string
         required: true
