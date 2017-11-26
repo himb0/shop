@@ -60,7 +60,7 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 
 ## **Use Case 1**
 
-### **Display consumer information**
+### **List customers**
 This use case provides consumer's personal information, products, and order history to the requesting external entities. The API fulfills the client's request through 
 > GET: provides customer personal information - first name, last name, and address
 This call is OAUTH2 secure, displays header information through trait: hasHeader. 
@@ -81,13 +81,62 @@ The GET method incorporates error handling through network layer,
               
 > 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
             
-> 200: Lists the customer records as collection
+> 200: Request successful for listing the customer records as collection.
 
 Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Create a new customer**
+This use case creates a new customer(s) in a collection.
+> POST: creates a customer record with first name, last name, and address
+This call is OAUTH2 secure, displays header information through trait: hasHeader. 
+
+The POST method incorporates error handling through network layer,
+
+> 400: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+
+> 408: The server timed out waiting for the request. According to HTTP specifications: "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the       request without modifications at any later time"
+
+> 423: The resource that is being accessed is locked
+
+> 429: The user has sent too many requests in a given amount of time. Request limit per 5 minutes.
+            
+> 500: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
+
+> 503: The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+              
+> 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
+            
+> 201: Request successful for creating a new list of customer(s) in a collection.
+
+Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Update a customer**
+This use case fetches the customer id from the client and updates a customer information partially/completely in the collection. 
+
+> PUT: updates a customer record with first name, last name, and address
+This call is OAUTH2 secure, displays header information through trait: hasHeader. 
+
+The PUT method incorporates error handling through network layer,
+
+> 400: The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
+
+> 408: The server timed out waiting for the request. According to HTTP specifications: "The client did not produce a request within the time that the server was prepared to wait. The client MAY repeat the       request without modifications at any later time".
+
+> 422: The request was well-formed but was unable to be followed due to semantic errors. 
+
+> 423: The resource that is being accessed is locked.
+
+> 429: The user has sent too many requests in a given amount of time. Request limit per 5 minutes.
+            
+> 500: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
+
+> 503: The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+              
+> 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
+            
+> 200: Request successful for updating customer(s) in the collection.
+
+Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Delete a customer**
 
