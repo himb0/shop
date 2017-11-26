@@ -110,6 +110,7 @@ The POST method incorporates error handling through network layer,
             
 > 201: Request successful for creating a new list of customer(s) in a collection.
 
+
 Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
 
 ### **Update a customer**
@@ -217,7 +218,7 @@ The basic class diagram is mentioned in section - **_How API work_**.
 
 # **Design Considerations**
 
-- Re-usability
+- Re-usability - `resourceTypes:` `traits` 
 - Less coupling
 - High Cohension
 - Performance
