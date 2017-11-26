@@ -173,23 +173,29 @@ This use case fulfills the requests from mobile applications. The RAML spec is a
 
 After detailed analysis, below header information is added.
 
-1. UserAgent: The header information that contains a characteristic string that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent. UserAgent information server will be able to fulfill clients providing below info:
+### **UserAgent**
+The header information that contains a characteristic string that allows the network protocol peers to identify the application type, operating system, software vendor or software version of the requesting software user agent.  
 
--Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)Gecko/20100101 Firefox/47.0
+UserAgent information server will be able to fulfill clients providing below info:
 
--Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)   
+  > Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)Gecko/20100101 Firefox/47.0
 
--Chrome/51.0.2704.103 Safari/537.36; Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) 
+  > Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)   
 
--Chrome/51.0.2704.103 Safari/537.36; Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+  > Chrome/51.0.2704.103 Safari/537.36; Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) 
 
--Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41
+  > Chrome/51.0.2704.103 Safari/537.36; Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
 
--Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1
+  > Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41
 
--Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0)
+  > Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko)
+  Version/10.0 Mobile/14E304 Safari/602.1
 
-2. Connection: The Connection general header controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. However, this is supported only within network using HTTP 1.1 standard. 
+  > Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0)
+
+### **Connection**
+The Connection general header controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. However, this is supported only within network using HTTP 1.1 standard. 
+
 The connection between server and client will not expire once a 3 way handshake is established between the two entities making the connection persistent. 
 
 ## **Use Case 3**
