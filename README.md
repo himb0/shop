@@ -11,7 +11,7 @@ This API is covering below use cases:-
  
 3. Simple extension of the API to support future resources such as orders and products
 
-### **How API works**
+## **How API works**
 
 RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its child class attributes to display further information about customer's ordering history and the range of products in the catalog.
 
@@ -216,14 +216,14 @@ This use case fulfills the further requirement of extending the API to products 
 
 The basic class diagram is mentioned in section - **_How API work_**. 
 
-# **Design Considerations**
+## **Design Considerations**
 
 - Re-usability - The idea of reusability is a fundamental principle followed while designing Shop RAML spec. I have used `collection` `resourceTypes:` `traits` `uses` to incorporate this feature. 
 - Modularity - Modules: shop, customer, order, product, and order details are independent in nature which promotes less coupling and high cohension. 
 - Standard practices of RAML - Use of inheritance through `uses` `collections` and promote re-usabiliy through `traits` `resourceTypes`
 - Performance - `Connection:Keep-Alive` ensures the HTTP connection is persistent once a 3 way handshake is established with the server and the servicing client. 
-- Error handling - Extensive use of error handling in network layer to cover all the possible edge cases.
-
+- Error handling - Extensive use of error handling in network layer to cover all the possible edge cases. However, the API does not cover data related exceptions, and errors and expects them to be handled by the application and presentation layer. 
+- Data quality - This is not considered in this API as it is more of implementation detail and should be added in the back-end and front-end systems. Though data semantics is being checked with error code `422`
 
 
 ## **Reference**
