@@ -50,15 +50,7 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 > Accept-Language: en-US;en-UK
 
 - Use Case 1
-This use case provides consumer's personal information to the requesting external entities. 
-
-	**x-rate-limit-limit:** the rate limit ceiling for that given endpoint. Each client is provided a 5 min window
-    
-	**x-rate-limit-remaining:** the number of requests left for the 5 minute window
-    
-	**x-rate-limit-reset:** the remaining window before the rate limit resets, in UTC epoch seconds
-    
-    The API fulfills the client's request and provides customer details like first name, last name, and address. Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
+This use case provides consumer's personal information to the requesting external entities. The API fulfills the client's request and provides customer details like first name, last name, and address. Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
 
 ### **Design Considerations**
 
