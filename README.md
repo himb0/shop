@@ -65,6 +65,8 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 
 > Connection: Keep-Alive
 
+> Accept-Encoding: gzip
+
 ## **Use Case 1**
 
 ### **List customers**
@@ -240,7 +242,3 @@ This use case fulfills the further requirement of extending the API to products 
 > [w3.org/Protocols](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 > [wikipedia/](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-
-
-
-
