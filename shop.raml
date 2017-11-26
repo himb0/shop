@@ -87,11 +87,12 @@ types:
         type: {Collection: {item: OrderDetail}}
         /{order_detail_id}:
            type: {Member: {item: OrderDetail}}
-
 resourceTypes:
   Collection:
     get:
+      # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      # display header #
       is: [hasHeaders]
       description: |
         Display all the customers, orders, and products
@@ -140,7 +141,8 @@ resourceTypes:
             Message OK
           body:
             description: |
-              List of customer records
+              Successfully lists the customer records
+
             type: <<item>>[]
 
     # The `PATCH` method is not listed as an allowed method in the list
@@ -151,14 +153,19 @@ resourceTypes:
     # the the `Allow` response header for all 405 responses
     # automatically.
     patch:
+      # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+
+      # Display header information#
       is: ["hasHeaders"]
       responses:
         405:
           description: |
             A request method is not supported for the requested resource.
     post:
+      # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      # Display header information #
       is: ["hasHeaders"]
       description: Create new customer(s) in the collection
       responses:
@@ -204,7 +211,7 @@ resourceTypes:
         # Request is fulfilled
         201:
           description: |
-            New customer(s) is created
+            New customer(s) is created successfully
           headers:
             secondary-post:
               description: |
@@ -212,8 +219,12 @@ resourceTypes:
           body:
             type: <<item>>[]
   Member:
+    # Put - Modify the customer/order/product record partially/completely #
     put:
+      # Secured by OAUTH2 #
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+
+      # Display the header information #
       is: ["hasHeaders"]
       description: |
         Update the customer record
@@ -262,11 +273,15 @@ resourceTypes:
             timely response from the upstream server.
         200:
           description: |
-            Message OK
+            Resource is updated successfuly
           body:
             type: <<item>>[]
+    # Delete method - Delete resource: customer/order/product record #
     delete:
+      # Secured by OAUTH2 #
+
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
+      # Display header information #
       is: ["hasHeaders"]
       responses:
         # Bad Request
@@ -311,9 +326,11 @@ resourceTypes:
         # Server removed the customer successfully
         204:
           description: |
-            Remove the customer
+            Resource is deleted successfully
             body:
               type: <<item>>[]
+
+# Header Definition #
 traits:
   hasHeaders:
     headers:
