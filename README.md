@@ -223,7 +223,7 @@ The basic class diagram is mentioned in section - **_How API work_**.
 - High Cohension
 - Performance
 - Error handling
-- Modularity
+- Modularity - 
 - Standard practices of RAML
 
 ## **Reference**
