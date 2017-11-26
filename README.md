@@ -72,9 +72,13 @@ The GET method incorporates error handling through network layer,
               
 > 504: The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
             
-> 200: Lists the customer records as collection <<item>>[]
+> 200: Lists the customer records as collection
 
-Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. 
+Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
+
+## **Use Case 2**
+
+## **Use Case 3**
 
 ### **Design Considerations**
 
