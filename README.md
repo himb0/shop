@@ -193,7 +193,7 @@ UserAgent information server will be able to fulfill clients providing below inf
 
   > Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0)
 
-### **Connection**
+### **Connection: Keep-Alive**
 The Connection general header controls whether or not the network connection stays open after the current transaction finishes. If the value sent is keep-alive, the connection is persistent and not closed, allowing for subsequent requests to the same server to be done. However, this is supported only within network using HTTP 1.1 standard. 
 
 The connection between server and client will not expire once a 3 way handshake is established between the two entities making the connection persistent. 
@@ -216,6 +216,8 @@ The basic class diagram is mentioned in section - **_How API work_**.
 # **Design Considerations**
 
 - Re-usability
+- Less coupling
+- High Cohension
 - Performance
 - Error handling
 - Modularity
