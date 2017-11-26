@@ -22,9 +22,17 @@ The idea is to provide customer sensitive information privately and in a secure 
 > 401 - Bad or expired token 
 > 403 - Bad oauth request (wrong consumer key, bad nonce, expired timestamp..}.
 
-The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). This API  allows only get, post, put, and delete requests; any other requests like patch, trace are deemed invalid and returned 
+The code for implementation of authentication is taken from, [raml.org/raml-1.0](https://raml.org/developers/whats-new-raml-10). This API  allows only: 
 
-> 405 - A request method is not supported for the requested resource.
+> get
+
+> post
+
+> put
+
+> delete
+
+> patch/trace/connection: deemed invalid requests and return, 405 - A request method is not supported for the requested resource.
 
 **Header Details**
 > [hasHeader] - The header name, defined as trait for re-using in GET, POST, PUT, DELETE methods. 
