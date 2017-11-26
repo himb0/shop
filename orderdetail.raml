@@ -1,0 +1,26 @@
+#%RAML 1.0 Library
+types:
+  OrderDetails:
+    uses:
+      Customer: customer.raml
+      Product: product.raml
+      Order: order.raml
+      order_detail_id:
+        type: number[]
+        description: |
+          unique key identifier for order record
+      cust_id:
+        type: number[]
+        description: |
+          foreign key identifier for customer record
+        required: true
+      prod_id:
+        type: number[]
+        description: |
+          foreign key identifier for product
+        required: true
+      order_id:
+        type: number[]
+        description: |
+          foreign key identifier for order
+    

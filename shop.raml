@@ -45,6 +45,7 @@ types:
       Customer: customer.raml
       Order: Order.raml
       Product: product.raml
+      OrderDetail: orderdetail.raml
       /shop:
         # The "allow" property provides a definition for the `Allow`
         # header which the server might return if given the `OPTIONS`
@@ -65,9 +66,12 @@ types:
         type: {Collection: {item: Order}}
         /{order_id}:
            type: {Member: {item: Order}}
-        type: {Collection: {iem: Product}}
+        type: {Collection: {item: Product}}
         /{product_id}:
            type: {Member: {item: Product}}
+        type: {Collection: {item: OrderDetail}}
+        /{order_detail_id}:
+           type: {Member: {item: OrderDetail}}
 
 resourceTypes:
   Collection:

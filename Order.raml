@@ -1,29 +1,16 @@
 #%RAML 1.0 Library
 types:
   Order:
-    uses:
-      Customer: customer.raml
-      Product: product.raml
-      order_id:
-        type: integer[]
-        desription: |
-          unique identifier for order
-        required: true
-      cust_id:
-        type: integer[]
-        description: |
-          foreign key identifier for customer record
-        required: true
-      prod_id:
-        type: integer[]
-        description: |
-          foreign key identifier for product record
-        required: true
-      order_date:
-        type: datetime[]
-        description: |
-          timestamp of order
-      prod_cost:
-        type: float[]
-        description: |
-          derived attribute from product
+    order_id:
+      type: number[]
+      desription: |
+        unique identifier for order
+      required: true
+    order_date:
+      type: datetime[]
+      description: |
+        timestamp of order
+    total_cost:
+      type: float[]
+      description: |
+        total cost of the order
