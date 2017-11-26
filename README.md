@@ -60,6 +60,7 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0 EMobile/9.0
 
 ## **Use Case 1**
 
+### **Display consumer information**
 This use case provides consumer's personal information, products, and order history to the requesting external entities. The API fulfills the client's request through 
 > GET: provides customer personal information - first name, last name, and address
 This call is OAUTH2 secure, displays header information through trait: hasHeader. 
@@ -83,6 +84,12 @@ The GET method incorporates error handling through network layer,
 > 200: Lists the customer records as collection
 
 Besides servicing client with regards to customer information, it further provides order, and product details which will be discussed in Use Case 3. Rate limiting is incorporated at the network layer to handle congestion, and service clients in a distributed environment giving clients equal priority in round robin fashion. 
+
+### **Create a new customer**
+
+### **Update a customer**
+
+### **Delete a customer**
 
 ## **Use Case 2**
 
