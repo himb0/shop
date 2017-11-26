@@ -121,7 +121,6 @@ resourceTypes:
 
         # Resource request is successful
         200:
-          # Keep-Alive #
           description: |
             Message OK
           body:
@@ -143,7 +142,6 @@ resourceTypes:
         405:
           description: |
             A request method is not supported for the requested resource.
-  Member:
     post:
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
       is: ["hasHeaders"]
@@ -198,7 +196,7 @@ resourceTypes:
                 Request is fulfilled
           body:
             type: <<item>>[]
-
+  Member:
     put:
       securedBy: [null, oauth_2_0: { scopes: [ null ] } ]
       is: ["hasHeaders"]
@@ -248,7 +246,6 @@ resourceTypes:
             The server was acting as a gateway or proxy and did not receive a
             timely response from the upstream server.
         200:
-          # Keep-Alive #
           description: |
             Message OK
           body:
