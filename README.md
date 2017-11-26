@@ -15,6 +15,11 @@ This API is covering below use cases:-
 
 RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its child class attributes to display further information about customer's ordering history and the range of products in the catalog.
 
+1. Customer - [https://github.com/himb0/shop/blob/master/customer.raml](https://github.com/himb0/shop/blob/master/customer.raml) 
+2. Order - [https://github.com/himb0/shop/blob/master/Order.raml](https://github.com/himb0/shop/blob/master/Order.raml)
+3. Product - [https://github.com/himb0/shop/blob/master/product.raml](https://github.com/himb0/shop/blob/master/product.raml)
+4. OrderDetails - [https://github.com/himb0/shop/blob/master/orderdetail.raml](https://github.com/himb0/shop/blob/master/orderdetail.raml)
+
 [RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
 The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of data. This API requires OAUTH2 authentication with requesting clients to service their requests. API returns 
