@@ -20,7 +20,7 @@ RAML spec provides customer records - personal information, their order history 
 3. Product - [https://github.com/himb0/shop/blob/master/product.raml](https://github.com/himb0/shop/blob/master/product.raml)
 4. OrderDetails - [https://github.com/himb0/shop/blob/master/orderdetail.raml](https://github.com/himb0/shop/blob/master/orderdetail.raml)
 
-[RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
+[RAML Spec](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
 The idea is to provide customer sensitive information privately and in a secure channel to avoid any eavesdropping or masquerading of customer assets. This API requires OAUTH2 authentication information to service their requesting clients. In events of failure, API returns 
 
@@ -220,7 +220,7 @@ This use case fulfills the further requirement of extending the API to products 
 
 - A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
 
-[RAML Class Diagram](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
+[RAML Spec](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
 ## **Design Considerations**
 
