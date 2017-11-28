@@ -13,7 +13,7 @@ This API is covering below use cases:-
 
 ## **How API works**
 
-RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent class: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its child class attributes to display further information about customer's ordering history and the range of products in the catalog.
+RAML spec provides customer records - personal information, their order history as well as lists product catalog available in the shop. This API has a parent service: [Shop API](https://github.com/himb0/shop/blob/master/shop.raml) which stores shop attributes and uses its micro-services attributes to display further information about customer's ordering history and the range of products in the catalog.
 
 1. Customer - [https://github.com/himb0/shop/blob/master/customer.raml](https://github.com/himb0/shop/blob/master/customer.raml) 
 2. Order - [https://github.com/himb0/shop/blob/master/Order.raml](https://github.com/himb0/shop/blob/master/Order.raml)
@@ -210,15 +210,15 @@ The connection between server and client will not expire once a 3 way handshake 
 ## **Use Case 3**
 This use case fulfills the further requirement of extending the API to products and orders. Shop is the parent RAML which uses libraries customer, order, product, and order details as collections. This design pattern was adopted to incorporate a basic data modelling mechanism which might be implemented on the backend system. 
 
-- A shop object is generated whenever customer invokes a shopping basket and can exist without Customer/order/product/order objects.
+- A shop service is generated whenever customer invokes a shopping basket and can exist without Customer/order/product/order micro-services.
 
-- A customer object has a many to one relationship with shop. Every customer is attached with shopping id.
+- A customer micro-service has a many to one relationship with shop. Every customer is attached with shopping id.
 
-- A order object has a many to one relationship with shop. Every order is attached with shopping id.
+- A order micro-service has a many to one relationship with shop. Every order is attached with shopping id.
 
-- A product object has a many to one relationship with shop. Every product is attached with shopping id. 
+- A product micro-service has a many to one relationship with shop. Every product is attached with shopping id. 
 
-- A order details object has a many to one relationship with shop, customer, order, and product objects. This object stores the purchasing history of a customer.
+- A order details micro-service has a many to one relationship with shop, customer, order, and product services. This service stores the purchasing history of a customer.
 
 [RAML Spec](https://www.lucidchart.com/documents/view/8de59b44-6450-46a2-ac11-64c8a59cb8e7)
 
